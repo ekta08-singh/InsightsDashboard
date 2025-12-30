@@ -1,3 +1,5 @@
+const Insight = require("../models/Insight");
+
 exports.getInsights = async (req, res) => {
   try {
     const {
@@ -13,7 +15,7 @@ exports.getInsights = async (req, res) => {
     } = req.query;
 
     const filter = {};
-    const makeRegex = (val) => new RegExp(`^${val.trim()}$`, "i");
+    const makeRegex = (val) => new RegExp(val.trim(), "i");
 
     if (end_year) {
       // match either start_year or end_year
@@ -37,6 +39,50 @@ exports.getInsights = async (req, res) => {
     console.log("📊 Returned docs:", data.length);
 
     res.json(data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
+exports.getMeta = async (req, res) => {
+  try {
+    const [
+      endYears,
+      topics,
+      sectors,
+      regions,
+      pestles,
+      sources,
+      swots,
+      countries,
+      cities
+    ] = await Promise.all([
+      Insight.distinct("end_year").then(arr => arr.filter(v => v).sort()),
+      Insight.distinct("topic").then(arr => arr.filter(v => v).sort()),
+      Insight.distinct("sector").then(arr => arr.filter(v => v).sort()),
+      Insight.distinct("region").then(arr => arr.filter(v => v).sort()),
+      Insight.distinct("pestle").then(arr => arr.filter(v => v).sort()),
+      Insight.distinct("source").then(arr => arr.filter(v => v).sort()),
+      Insight.distinct("swot").then(arr => arr.filter(v => v).sort()),
+      Insight.distinct("country").then(arr => arr.filter(v => v).sort()),
+      Insight.distinct("city").then(arr => arr.filter(v => v).sort())
+    ]);
+
+    const total = await Insight.countDocuments();
+
+    res.json({
+      total,
+      endYears,
+      topics,
+      sectors,
+      regions,
+      pestles,
+      sources,
+      swots,
+      countries,
+      cities
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Server error" });

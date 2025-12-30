@@ -1,0 +1,145 @@
+.vuexy-auth {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    font-family: Inter, sans-serif;
+  }
+  
+  /* LEFT */
+  .vuexy-left {
+    background: linear-gradient(180deg, #f8fafc, #eef2ff);
+    padding: 40px;
+    position: relative;
+  }
+  
+  .vuexy-logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #6366f1;
+  }
+  
+  .vuexy-illustration {
+    margin-top: 100px;
+    position: relative;
+    height: 320px;
+  }
+  
+  .avatar-circle {
+    width: 160px;
+    height: 160px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 50%;
+    margin: auto;
+  }
+  
+  .stat-card {
+    position: absolute;
+    background: #fff;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+    width: 140px;
+  }
+  
+  .stat-card.top {
+    left: 10%;
+    top: 20px;
+  }
+  
+  .stat-card.bottom {
+    right: 10%;
+    bottom: 20px;
+  }
+  
+  .stat-card p {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .stat-card span {
+    color: #22c55e;
+    font-size: 0.85rem;
+  }
+  
+  /* RIGHT */
+  .vuexy-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+  }
+  
+  .vuexy-card {
+    width: 380px;
+  }
+  
+  .subtitle {
+    color: #64748b;
+    margin-bottom: 20px;
+  }
+  
+  .vuexy-form label {
+    font-size: 0.8rem;
+    color: #475569;
+  }
+  
+  .vuexy-form input {
+    width: 100%;
+    padding: 10px 12px;
+    margin: 6px 0 14px;
+    border-radius: 8px;
+    border: 1px solid #c7d2fe;
+  }
+  
+  .primary-btn {
+    width: 100%;
+    padding: 12px;
+    background: #6366f1;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .primary-btn:hover {
+    background: #4f46e5;
+  }
+  
+  .hint-box {
+    background: #eef2ff;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    margin-bottom: 16px;
+    color: #4338ca;
+  }
+  
+  .remember-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    margin-bottom: 16px;
+  }
+  
+  .error-box {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    font-size: 0.8rem;
+  }
+  
+  .auth-footer {
+    margin-top: 20px;
+    font-size: 0.85rem;
+  }
+  
+  .auth-footer span {
+    color: #6366f1;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  

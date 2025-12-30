@@ -1,17 +1,20 @@
 import axios from "axios";
+import { getUser } from "./auth";
 
-const API_BASE = "http://localhost:5000/api";
+const api = axios.create({
+  baseURL: "http://localhost:5000/api"
+});
 
-export const fetchMeta = async () => {
-  const res = await axios.get(`${API_BASE}/insights/meta`);
-  return res.data;
-};
+api.interceptors.request.use((config) => {
+  const user = getUser();
+  if (user?.token) {
+    config.headers.Authorization = `Bearer ${user.token}`;
+  }
+  return config;
+});
 
-export const fetchInsights = async (filters) => {
-  const params = {};
-  Object.entries(filters).forEach(([key, value]) => {
-    if (value) params[key] = value;
-  });
-  const res = await axios.get(`${API_BASE}/insights`, { params });
-  return res.data;
-};
+export const fetchInsights = (params) =>
+  api.get("/insights", { params }).then(res => res.data);
+
+export const fetchMeta = () =>
+  api.get("/insights/meta").then(res => res.data);
